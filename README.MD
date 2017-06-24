@@ -9,14 +9,17 @@ Its required to install docker-compose first (here)[https://docs.docker.com/comp
 ## Start whole stack
 docker-start.sh is the script that starts the whole stack
 
-It takes in two variables, Database username and password
+It takes in three variables, Database username and password
 
 ```
-$ ./docker-start.sh <DB_USER> <DB_PASS>
+$ ./docker-start.sh <DB_USER> <DB_PASS> <DB_HOST>
 ```
-Example
+Examples
 ```
-$ ./docker-start.sh postgres password
+$ ./docker-start.sh postgres password postgres
+```
+```
+$ ./docker-start.sh postgres password 127.0.0.1
 ```
 
 After that visit localhost:8000 in a browser and see that Django is running. If you go to 
@@ -32,11 +35,14 @@ backend-start.sh is a script that starts up just the backend
 It takes in two variables, Database username and password
 
 ```
-$ ./backend-start.sh <DB_USER> <DB_PASS>
+$ ./docker-start.sh <DB_USER> <DB_PASS> <DB_HOST>
 ```
 Example
 ```
-$ ./backend-start.sh postgres password
+$ ./backend-start.sh postgres password postgres
+```
+```
+$ ./backend-start.sh postgres password 127.0.0.1
 ```
 
 After that visit localhost:8000 in a browser and see that Django is running. If you go to 
