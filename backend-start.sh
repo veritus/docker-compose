@@ -3,6 +3,9 @@
 
 # Script for just starting up the backend
 
+export DB_USER=$1 
+export DB_PASS=$2 
+
 # Building images
 docker-compose build
 

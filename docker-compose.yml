@@ -2,13 +2,15 @@ version: '3'
 
 services:
   db:
-    image: postgres:latest
-
+    image: postgres:9.6.3
+    environment:
+    - POSTGRES_PASSWORD=${DB_PASS}
+    
   backend:
     image: arihrannar/veritus-backend:latest
     environment:
-    - DB_USER=postgres
-    - DB_PASS=pass
+    - DB_USER=${DB_USER}
+    - DB_PASS=${DB_PASS}
     command: python3 src/manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"

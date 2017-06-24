@@ -1,6 +1,11 @@
 
 #!bin/bash
 
+# Script for starting up the whole stack
+
+export DB_USER=$1 
+export DB_PASS=$2 
+
 # Building images
 docker-compose build
 
