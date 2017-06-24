@@ -3,9 +3,8 @@
 
 # Script for starting up the whole stack
 
-export DB_USER=$1 
-export DB_PASS=$2 
-export DB_HOST=$3
+export POSTGRES_USER=$1 
+export POSTGRES_PASSWORD=$2 
 
 # Building images
 docker-compose build
