@@ -1,4 +1,4 @@
-version: '3'
+version: '2.1'
 
 services:
   db:
@@ -6,6 +6,11 @@ services:
     environment:
       - POSTGRES_USER=$POSTGRES_USER
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+    healthcheck:
+      test: ["CMD-SHELL", "psql -h 'localhost' -U 'postgres' -c '\\l'"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
     
   backend:
     image: veritus/backend:latest
@@ -17,4 +22,5 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
