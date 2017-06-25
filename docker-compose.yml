@@ -17,6 +17,7 @@ services:
     environment:
       - POSTGRES_USER=$POSTGRES_USER
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - SECRET_KEY=$SECRET_KEY
       - DB_HOST=db
     command: python3 src/manage.py runserver 0.0.0.0:8000
     ports:
@@ -24,3 +25,21 @@ services:
     depends_on:
       db:
         condition: service_healthy
+  
+  frontend:
+    image: veritus/frontend:latest
+    volumes:
+      - ./app:/build/static/js
+    ports: 
+      - 3000:3000
+    depends_on:
+      - backend
+  
+  nginx:
+    build: ./nginx
+    volumes_from:
+      - frontend
+    depends_on:
+      - frontend
+    ports:
+      - "80:80"
