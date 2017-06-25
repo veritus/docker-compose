@@ -5,6 +5,7 @@
 
 export POSTGRES_USER=$1 
 export POSTGRES_PASSWORD=$2 
+export SECRET_KEY=$3
 
 # Building images
 docker-compose build
