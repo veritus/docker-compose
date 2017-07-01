@@ -29,20 +29,15 @@ services:
   frontend:
     image: veritus/frontend:latest
     volumes:
-      - /build:/build
-    ports: 
-      - 3000:3000
-    depends_on:
-      - backend
+      - /code/build
   
   nginx:
-    build: ./nginx
+    image: nginx:alpine
     links:
       - frontend
     volumes_from:
       - frontend
-    depends_on:
-      - frontend
+    volumes:
+      - ./nginx/conf.d/server.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
